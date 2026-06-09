@@ -5,7 +5,8 @@ import type { ShipConfig } from "ship";
 
 const config: ShipConfig = {
 	database: {
-		adapter: "memory",
+		adapter: "sqlite",
+		url: "books.db",
 	},
 	http: {
 		port: 8080,

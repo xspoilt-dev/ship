@@ -38,6 +38,7 @@ export interface CollectionConfig {
 
 export interface DatabaseConfig {
 	adapter: "memory" | "sqlite" | "postgres" | "mongodb";
+	url?: string;
 }
 
 export interface ShipConfig {

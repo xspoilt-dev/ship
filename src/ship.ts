@@ -1,5 +1,6 @@
 import type { ShipConfig as ShipConfigType } from "./types";
 import { MemoryStore } from "./store/memory";
+import { DrizzleStore } from "./store/drizzle";
 import type { Store } from "./store/types";
 import { createHandler } from "./server/handler";
 
@@ -13,6 +14,8 @@ function createStore(config: ShipConfigType): Store {
 	switch (adapter) {
 		case "memory":
 			return new MemoryStore();
+		case "sqlite":
+			return new DrizzleStore({ url: config.database?.url });
 		default: {
 			console.warn(
 				`Adapter '${adapter}' not implemented, falling back to memory`,
