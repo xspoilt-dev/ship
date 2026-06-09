@@ -1,0 +1,7 @@
+{
+	"name": "books-example",
+	"type": "module",
+	"dependencies": {
+		"ship": "file:../.."
+	}
+}
