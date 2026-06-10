@@ -5,7 +5,7 @@ import type { Store } from "./store/types";
 import { createHandler } from "./server/handler";
 
 export interface ShipInstance {
-	sail(): void;
+	sail(cb?: (url: string) => void): void;
 	stop(): void;
 }
 
@@ -51,12 +51,12 @@ export function Ship(config: ShipConfigType): ShipInstance {
 	let server: ReturnType<typeof Bun.serve> | null = null;
 
 	return {
-		sail(cb?: () => void): void {
+		sail(cb?: (url: string) => void): void {
 			server = Bun.serve({
 				port: config.http?.port ?? 8080,
 				fetch,
 			});
-			if (cb) cb();
+			if (cb) cb(server.url.href);
 			else console.log(`Ship sailing on ${server.url}`);
 		},
 

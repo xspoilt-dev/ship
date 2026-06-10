@@ -8,6 +8,12 @@
 	"exports": {
 		".": "./src/index.ts"
 	},
+	"scripts": {
+		"test": "bun test",
+		"test:unit": "bun test tests/unit",
+		"test:integration": "bun test tests/integration",
+		"test:bench": "bun test tests/benchmark"
+	},
 	"type": "module",
 	"devDependencies": {
 		"@types/bun": "^1.3.14",
