@@ -1,5 +1,3 @@
-import { Authors } from "./Authors";
-
 export const Books = {
 	slug: "books",
 	access: {
@@ -21,7 +19,7 @@ export const Books = {
 		{
 			name: "author",
 			type: "relation",
-			relationTo: Authors,
+			relationTo: "users",
 			required: true,
 		},
 	],

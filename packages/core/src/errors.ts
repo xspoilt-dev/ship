@@ -40,6 +40,12 @@ export class AccessDeniedError extends HttpError {
 	}
 }
 
+export class AuthenticationError extends HttpError {
+	constructor() {
+		super("Invalid email or password", 401);
+	}
+}
+
 export function errorToResponse(error: unknown): Response {
 	if (error instanceof HttpError) {
 		return error.toResponse();

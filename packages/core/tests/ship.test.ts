@@ -1,14 +1,25 @@
 import { describe, it, expect } from "bun:test";
 import { Ship } from "../src/ship";
-import type { ShipConfig } from "../src/types";
+import type { ShipConfig, Field } from "../src/types";
 
 function makeConfig(overrides: Partial<ShipConfig> = {}): ShipConfig {
 	return {
 		collections: [
 			{
 				slug: "posts",
-				access: { read: () => true, create: () => true, update: () => true, delete: () => true },
-				fields: [{ name: "title", type: "text", required: true }],
+				access: {
+					read: () => true,
+					create: () => true,
+					update: () => true,
+					delete: () => true,
+				},
+				fields: [
+					{
+						name: "title",
+						type: "text",
+						required: true,
+					} as Field,
+				],
 			},
 		],
 		http: { port: 0 },
@@ -30,14 +41,19 @@ describe("Ship", () => {
 			collections: [
 				{
 					slug: "posts",
-					access: { read: () => true, create: () => true, update: () => true, delete: () => true },
+					access: {
+						read: () => true,
+						create: () => true,
+						update: () => true,
+						delete: () => true,
+					},
 					fields: [
 						{
 							name: "author",
 							type: "relation",
 							required: true,
-							relationTo: { slug: "nonexistent" },
-						},
+							relationTo: "nonexistent",
+						} as Field,
 					],
 				},
 			],

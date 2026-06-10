@@ -1,22 +1,30 @@
 import { describe, it, expect, beforeAll, afterAll } from "bun:test";
 import { Ship } from "ship";
-import type { ShipConfig, CollectionConfig } from "ship";
+import type { ShipConfig, Field } from "ship";
 
-const POSTS: CollectionConfig = {
+const POSTS = {
 	slug: "posts",
-	access: { read: () => true, create: () => true, update: () => true, delete: () => true },
+	access: {
+		read: () => true,
+		create: () => true,
+		update: () => true,
+		delete: () => true,
+	},
 	fields: [
-		{ name: "title", type: "text", required: true },
-		{ name: "body", type: "text", required: false },
+		{ name: "title", type: "text" as const, required: true },
+		{ name: "body", type: "text" as const, required: false },
 	],
 };
 
-const AUTHORS: CollectionConfig = {
+const AUTHORS = {
 	slug: "authors",
-	access: { read: () => true, create: () => true, update: () => true, delete: () => true },
-	fields: [
-		{ name: "name", type: "text", required: true },
-	],
+	access: {
+		read: () => true,
+		create: () => true,
+		update: () => true,
+		delete: () => true,
+	},
+	fields: [{ name: "name", type: "text" as const, required: true }],
 };
 
 describe("HTTP integration", () => {
@@ -210,7 +218,13 @@ describe("HTTP integration with access control", () => {
 						update: () => false,
 						delete: () => false,
 					},
-					fields: [{ name: "name", type: "text", required: true }],
+					fields: [
+						{
+							name: "name",
+							type: "text",
+							required: true,
+						} as Field,
+					],
 				},
 			],
 			http: { port: 0 },

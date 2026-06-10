@@ -15,10 +15,10 @@ function validateRelations(config: ShipConfigType): void {
 			if (
 				field.type === "relation" &&
 				field.relationTo &&
-				!slugs.has(field.relationTo.slug)
+				!slugs.has(field.relationTo)
 			) {
 				throw new Error(
-					`Collection "${col.slug}" has relation field "${field.name}" referencing unknown collection "${field.relationTo.slug}"`,
+					`Collection "${col.slug}" has relation field "${field.name}" referencing unknown collection "${field.relationTo}"`,
 				);
 			}
 		}

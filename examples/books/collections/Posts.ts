@@ -23,6 +23,7 @@ export const Posts = defineCollection({
 			name: "author",
 			type: "relation",
 			required: true,
+			relationTo: "users",
 		},
 	],
 });
