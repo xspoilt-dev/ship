@@ -1,4 +1,4 @@
-import type { CollectionConfig } from "../../types";
+import type { CollectionConfig } from "ship";
 import { printRoutes, printCollections } from "../config";
 
 export async function inspect(

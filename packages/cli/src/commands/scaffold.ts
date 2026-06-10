@@ -52,12 +52,11 @@ ${fieldLines}
 
 export async function scaffoldInit(): Promise<void> {
 	const configPath = join(process.cwd(), "ship.config.ts");
-	const content = `import type { ShipConfig } from "ship";
+	const content = `import { MemoryAdapter } from "ship";
+import type { ShipConfig } from "ship";
 
 const config: ShipConfig = {
-\tdatabase: {
-\t\tadapter: "memory",
-\t},
+\tdatabase: new MemoryAdapter(),
 \thttp: {
 \t\tport: 3000,
 \t},

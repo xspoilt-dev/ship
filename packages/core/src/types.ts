@@ -1,3 +1,5 @@
+import type { Store } from "./store/types";
+
 export interface Access {
 	read: () => boolean;
 	create: () => boolean;
@@ -36,13 +38,8 @@ export interface CollectionConfig {
 	fields: Field[];
 }
 
-export interface DatabaseConfig {
-	adapter: "memory" | "sqlite" | "postgres" | "mongodb";
-	url?: string;
-}
-
 export interface ShipConfig {
-	database?: DatabaseConfig;
+	database?: Store;
 	collections: CollectionConfig[];
 	http?: {
 		port?: number;

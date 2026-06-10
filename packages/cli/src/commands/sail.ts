@@ -1,5 +1,5 @@
-import { Ship } from "../../ship";
-import type { ShipConfig } from "../../types";
+import { Ship } from "ship";
+import type { ShipConfig } from "ship";
 
 export async function sail(config: ShipConfig, port?: number): Promise<void> {
 	const merged: ShipConfig = {

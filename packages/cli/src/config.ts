@@ -1,4 +1,4 @@
-import type { ShipConfig, CollectionConfig } from "../types";
+import type { ShipConfig, CollectionConfig } from "ship";
 
 export async function loadConfig(path?: string): Promise<ShipConfig> {
 	const configPath =

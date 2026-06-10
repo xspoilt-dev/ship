@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from "bun:test";
-import { DrizzleStore } from "../../src/store/drizzle";
+import { SqliteAdapter } from "../src";
 
-describe("DrizzleStore", () => {
-	let store: DrizzleStore;
+describe("SqliteAdapter", () => {
+	let store: SqliteAdapter;
 
 	beforeEach(() => {
-		store = new DrizzleStore({ url: ":memory:" });
+		store = new SqliteAdapter({ url: ":memory:" });
 	});
 
 	describe("list", () => {

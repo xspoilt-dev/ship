@@ -2,6 +2,7 @@
 	"name": "books-example",
 	"type": "module",
 	"dependencies": {
-		"ship": "file:../.."
+		"ship": "workspace:*",
+		"@ship/sqlite": "workspace:*"
 	}
 }

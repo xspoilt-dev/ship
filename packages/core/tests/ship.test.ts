@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
-import { Ship } from "../../src/ship";
-import type { ShipConfig } from "../../src/types";
+import { Ship } from "../src/ship";
+import type { ShipConfig } from "../src/types";
 
 function makeConfig(overrides: Partial<ShipConfig> = {}): ShipConfig {
 	return {

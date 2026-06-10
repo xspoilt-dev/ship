@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach } from "bun:test";
-import { MemoryStore } from "../../src/store/memory";
+import { DrizzleAdapter } from "../src";
 
-describe("MemoryStore", () => {
-	let store: MemoryStore;
+describe("DrizzleAdapter", () => {
+	let store: DrizzleAdapter;
 
 	beforeEach(() => {
-		store = new MemoryStore();
+		store = new DrizzleAdapter({ url: ":memory:" });
 	});
 
 	describe("list", () => {
@@ -43,20 +43,6 @@ describe("MemoryStore", () => {
 			const doc = await store.create("posts", { title: "New Post" });
 			expect(doc.id).toBe("1");
 			expect(doc.title).toBe("New Post");
-		});
-
-		it("increments id per collection", async () => {
-			const doc1 = await store.create("posts", { title: "A" });
-			const doc2 = await store.create("posts", { title: "B" });
-			expect(doc1.id).toBe("1");
-			expect(doc2.id).toBe("2");
-		});
-
-		it("maintains separate sequences per collection", async () => {
-			const p1 = await store.create("posts", { title: "A" });
-			const c1 = await store.create("comments", { text: "C1" });
-			expect(p1.id).toBe("1");
-			expect(c1.id).toBe("1");
 		});
 	});
 

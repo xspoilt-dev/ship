@@ -5,7 +5,7 @@ import {
 	ValidationError,
 	AccessDeniedError,
 	errorToResponse,
-} from "../../src/errors";
+} from "../src/errors";
 
 describe("HttpError", () => {
 	it("creates error with message and status", () => {

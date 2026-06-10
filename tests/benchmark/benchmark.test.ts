@@ -1,7 +1,6 @@
 import { describe, it, expect } from "bun:test";
-import { MemoryStore } from "../../src/store/memory";
-import { validateBody } from "../../src/schema/validation";
-import type { Field } from "../../src/types";
+import { MemoryAdapter, validateBody } from "ship";
+import type { Field } from "ship";
 
 const POST_FIELDS: Field[] = [
 	{ name: "title", type: "text", required: true, validation: { minLength: 1, maxLength: 100 } },
@@ -14,18 +13,18 @@ function elapsedMs(start: bigint): number {
 }
 
 describe("benchmark", () => {
-	it("MemoryStore#create (1000 docs)", () => {
+	it("MemoryAdapter#create (1000 docs)", () => {
 		const start = Bun.nanoseconds();
-		const store = new MemoryStore();
+		const store = new MemoryAdapter();
 		for (let i = 0; i < 1000; i++) {
 			store.create("posts", { title: `Post ${i}`, body: "content", author: "1" });
 		}
 		const ms = elapsedMs(start);
-		console.log(`  MemoryStore#create 1000 docs: ${ms.toFixed(2)}ms`);
+		console.log(`  MemoryAdapter#create 1000 docs: ${ms.toFixed(2)}ms`);
 	});
 
-	it("MemoryStore#list (100 docs, 100 iterations)", () => {
-		const store = new MemoryStore();
+	it("MemoryAdapter#list (100 docs, 100 iterations)", () => {
+		const store = new MemoryAdapter();
 		for (let i = 0; i < 100; i++) {
 			store.create("posts", { title: `Post ${i}`, body: "content" });
 		}
@@ -34,11 +33,11 @@ describe("benchmark", () => {
 			store.list("posts");
 		}
 		const ms = elapsedMs(start);
-		console.log(`  MemoryStore#list 100x100: ${ms.toFixed(2)}ms`);
+		console.log(`  MemoryAdapter#list 100x100: ${ms.toFixed(2)}ms`);
 	});
 
-	it("MemoryStore#get by id (100 docs)", () => {
-		const store = new MemoryStore();
+	it("MemoryAdapter#get by id (100 docs)", () => {
+		const store = new MemoryAdapter();
 		const ids: string[] = [];
 		for (let i = 0; i < 100; i++) {
 			const doc = store.create("posts", { title: `Post ${i}` });
@@ -49,7 +48,7 @@ describe("benchmark", () => {
 			store.get("posts", id);
 		}
 		const ms = elapsedMs(start);
-		console.log(`  MemoryStore#get 100 docs: ${ms.toFixed(2)}ms`);
+		console.log(`  MemoryAdapter#get 100 docs: ${ms.toFixed(2)}ms`);
 	});
 
 	it("validateBody - valid payload", () => {

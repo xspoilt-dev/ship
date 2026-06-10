@@ -1,6 +1,6 @@
 import type { Store, StoredDocument } from "./types";
 
-export class MemoryStore implements Store {
+export class MemoryAdapter implements Store {
 	private collections = new Map<string, Map<string, StoredDocument>>();
 	private sequences = new Map<string, number>();
 

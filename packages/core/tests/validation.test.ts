@@ -1,6 +1,6 @@
 import { describe, it, expect } from "bun:test";
-import { validateField, validateBody } from "../../src/schema/validation";
-import type { Field } from "../../src/types";
+import { validateField, validateBody } from "../src/schema/validation";
+import type { Field } from "../src/types";
 
 describe("validateField", () => {
 	it("returns error for missing required text field", () => {

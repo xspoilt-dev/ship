@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import { defineCollection } from "../../src/collection";
+import { defineCollection } from "../src/collection";
 
 describe("defineCollection", () => {
 	it("returns the config object as-is", () => {

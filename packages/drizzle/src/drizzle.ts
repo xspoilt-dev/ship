@@ -2,7 +2,7 @@ import { Database } from "bun:sqlite";
 import { drizzle } from "drizzle-orm/bun-sqlite";
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { eq, and } from "drizzle-orm";
-import type { Store, StoredDocument } from "./types";
+import type { Store, StoredDocument } from "ship";
 
 const documents = sqliteTable("ship_documents", {
 	id: text("id").primaryKey(),
@@ -34,15 +34,15 @@ function now(): string {
 	return new Date().toISOString();
 }
 
-export interface DrizzleStoreConfig {
+export interface DrizzleAdapterConfig {
 	url?: string;
 }
 
-export class DrizzleStore implements Store {
+export class DrizzleAdapter implements Store {
 	private db: ReturnType<typeof drizzle>;
 	private sqlite: Database;
 
-	constructor(config: DrizzleStoreConfig = {}) {
+	constructor(config: DrizzleAdapterConfig = {}) {
 		this.sqlite = new Database(config.url ?? "ship.db");
 		this.sqlite.exec("PRAGMA journal_mode=WAL");
 		this.db = drizzle(this.sqlite);
